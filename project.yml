@@ -1,0 +1,41 @@
+---
+- name: Install Microk8s and AWX
+  hosts: localhost
+  gather_facts: false
+  become: true
+
+  roles:
+    - name: Install Microk8s
+      block:
+        - name: Trigger install_microk8s role
+          include_role:
+            name: install_microk8s
+      tags:
+        - install_microk8s
+      rescue:
+        - name: Failed to install Microk8s
+          meta: end_play
+
+    - name: Deploy AWX on Microk8s
+      block:
+        - name: Trigger deploy_awx role
+          include_role:
+            name: deploy_awx
+
+      tags:
+        - deploy_awx
+      rescue:
+        - name: Failed to install deploy_awx
+          meta: end_play
+
+    - name: Config AWX
+      block:
+        - name: Trigger config_awx role
+          include_role:
+            name: config_awx
+
+      tags:
+        - config_awx
+      rescue:
+        - name: Failed to configure AWX
+          meta: end_play

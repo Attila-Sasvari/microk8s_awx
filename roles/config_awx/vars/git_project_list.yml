@@ -1,0 +1,5 @@
+projects:
+  - my_project: "linux_cpu_project"
+    my_git: "git@github.com:attila-sasvari/linux_cpu_project.git"
+  - my_project: "win_cpu_project"
+    my_git: "git@github.com:attila-sasvari/win_cpu_project.git"

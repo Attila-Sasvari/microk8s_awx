@@ -1,0 +1,6 @@
+# all hosts in microk8s cluster
+[unix]
+centos
+
+[windows]
+win2016

@@ -1,0 +1,24 @@
+---
+- name: Deploy AWX operator on microk8s
+  shell: kubectl apply -f {{ awx_operator_url }}
+
+- name: Check status of pods
+  shell: kubectl get pods
+
+- name: Create AWX resource
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('file', 'templates/awx.yml') | from_yaml }}"
+
+- name: Get Admin password of AWX
+  shell: kubectl get secret awx-admin-password \
+    -o jsonpath="{.data.password}" | base64 --decode
+  register: awx_pwd
+
+- name: Get URL of AWX
+  shell: kubectl service awx-service --url -n awx
+  register: awx_url
+
+- name: Define API URL
+  set_fact:
+    awx_base_url: "{{ awx_url | trim('/')  }}/api/v2"

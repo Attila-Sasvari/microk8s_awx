@@ -1,0 +1,54 @@
+---
+- name: Install docker
+  become: true
+  apt:
+    name: docker.io
+    update_cache: true
+    cache_valid_time: 86400
+    state: present
+
+- name: Install microk8s
+  become: true
+  snap:
+    name: microk8s
+    state: present
+    classic: yes
+
+- name: Add user to Docker and Microk8s groups,
+    they will need to logout and in again
+  become: true
+  user:
+    name: '{{ lookup("env", "USER") }}'
+    state: present
+    groups:
+      - docker
+      - microk8s
+    append: true
+
+- name: Change owner of .kube
+  shell: chown -f -R $USER ~/.kube
+
+- name: Add alias to kubectl
+  lineinfile:
+    path: '{{ lookup("env", "HOME") }}/.bashrc'
+    regexp: '^alias kubectl='
+    line: 'alias kubectl="microk8s kubectl"'
+    state: present
+
+- name: Add bash completion for kubectl
+  lineinfile:
+    path: '{{ lookup("env", "HOME") }}/.bashrc'
+   regexp: '^source \<\(kubectl'
+   line: 'source <(kubectl completion bash)'
+   state: present
+
+- name: Reload user profile
+  shell: ". ~/.profile"
+  # shell: su - $USER
+
+- name: Check for microk8s status
+  shell: microk8s status --wait-ready
+  register: microk8s_status_wait_ready
+
+- name: Enable add-ons
+  shell: microk8s enable storage dns ingress

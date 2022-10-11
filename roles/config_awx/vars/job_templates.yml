@@ -1,0 +1,13 @@
+---
+my_jobs:
+  - my_job_template: "linux_cpu_jt"
+    my_project: "linux_cpu_project"
+    my_playbook: "check_cpu_usage.yml"
+    my_credential: "machine_credential_1"
+    my_inventory: "linux_hosts"
+
+  - my_job_template: "win_cpu_jt"
+    my_project: "win_cpu_project"
+    my_playbook: "check_cpu_usage.yml"
+    my_credential: "machine_credential_2"
+    my_inventory: "windows_hosts"

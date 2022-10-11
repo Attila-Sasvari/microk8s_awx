@@ -1,0 +1,8 @@
+---
+my_organization: "Default"
+
+my_users:
+  - my_team: "developer"
+    my_name: "my.user"
+    my_pass: "password"
+    my_mail: "myemail@gmail.com"

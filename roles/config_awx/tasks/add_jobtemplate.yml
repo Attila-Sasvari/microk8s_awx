@@ -1,0 +1,25 @@
+---
+- name: Add Job Template
+  tower_job_template:
+    name: "{{ item.my_job_template }}"
+    job_type: "run"
+    organization: "{{ my_organization }}"
+    inventory: "{{ item.my_inventory }}"
+    project: "{{ item.my_project }}"
+    playbook: "{{ item.my_playbook }}"
+    credential: "{{ item.my_credential }}"
+    become_enabled: "{{ item.my_become | default(omit) }}"
+    survey_enabled: "{{ item.my_survey_enabled | default(omit) }}"
+    tower_oauthtoken: "{{ my_token }}"
+  loop: "{{ my_jobs }}"
+  when:  not ansible_check_mode
+
+- name: Add role(exec) to current team
+  awx.awx.tower_role:
+    team: "{{ item.0.my_team }}"
+    role: execute
+    job_templates: "{{ item.1.my_job_template }}"
+    state: present
+    tower_oauthtoken: "{{ my_token }}"
+  loop: "{{ my_users | product(my_jobs) }}"
+  when: my_users | length > 0 and ( not ansible_check_mode )
