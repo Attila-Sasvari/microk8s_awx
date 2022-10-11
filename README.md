@@ -1,8 +1,39 @@
-https://www.theurbanpenguin.com/an-ansible-microk8s-install-of-kubernetes/
+# Synopsis
 
-https://medium.com/devlan-io/how-to-deploy-ansible-awx-on-ubuntu-with-microk8s-c29441ea44fd
+The repository is a GitHub project that includes roles and a playbook to install `Microk8s`, then deploy `AWX` on it, finally configure AWX with some project, job template, etc.
 
-https://automationtools.me/2022/07/how-to-install-awx-ansible-tower-to-microk8s/
+```json
+This asset is not ready for usage!
+The project includes the skeleton of the asset with some well-defined tasks, but it's not finished or tested.
+It's acceptable to demonstrate the planned solution to the problem.
+```
 
+## Install Microk8s
 
-https://github.kyndryl.net/japan-tech-sales/awx19
+The name of the related role: `install_microk8s`.
+
+It's main workflow:
+- Install docker.
+- Install microk8s.
+- Add user to the required groups and perform a few additional configuration.
+
+## Deploy AWX
+
+The name of the related role: `deploy_awx`.
+
+It's main workflow:
+- Deploy AWX operator.
+- Access AWX admin password and URL.
+
+## Configure AWX
+
+The name of the related role: `config_awx`.
+
+It's main workflow:
+- Add a team and a user.
+- Add a project.
+- Add an inventory.
+- Add credentials.
+- Add job templates.
+
+This role highly relies on the variables created in the `vars/` directory.
