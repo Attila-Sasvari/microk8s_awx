@@ -12,7 +12,7 @@ It's acceptable to demonstrate the planned solution to the problem.
 
 The name of the related role: `install_microk8s`.
 
-It's main workflow:
+Its main workflow:
 - Install docker.
 - Install microk8s.
 - Add user to the required groups and perform a few additional configuration.
@@ -23,7 +23,7 @@ Note: alternative solution would be to utilize https://galaxy.ansible.com/racqsp
 
 The name of the related role: `deploy_awx`.
 
-It's main workflow:
+Its main workflow:
 - Deploy AWX operator.
 - Access AWX admin password and URL.
 
@@ -33,7 +33,7 @@ Note: alternative solution would be to utilize https://galaxy.ansible.com/racqsp
 
 The name of the related role: `config_awx`.
 
-It's main workflow:
+Its main workflow:
 - Add a team and a user.
 - Add a project.
 - Add an inventory.
