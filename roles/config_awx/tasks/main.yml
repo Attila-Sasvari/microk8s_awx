@@ -4,3 +4,4 @@
 - import_playbook: add_inventory.yml
 - import_playbook: addr_credential.yml
 - import_playbook: add_jobtemplate.yml
+# add task for webhooks

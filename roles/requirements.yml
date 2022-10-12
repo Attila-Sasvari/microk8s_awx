@@ -1,0 +1,5 @@
+---
+- name: motd
+  src: "git@github.com:adriagalin/ansible.motd.git"
+  scm: git
+  version: 3.2.0

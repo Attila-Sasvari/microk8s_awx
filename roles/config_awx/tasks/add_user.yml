@@ -5,7 +5,6 @@
     password: "{{ item.my_pass }}"
     email: "{{ item.my_mail }}"
     state: present
-    update_secrets: true
     tower_oauthtoken: "{{ my_token }}"
   loop: "{{ my_users }}"
-  when: my_users | length > 0 and ( item.my_name not in current_users )
+  when: my_users | length > 0

@@ -4,18 +4,16 @@
     name: "{{ item.my_team }}"
     organization: "{{ my_organization }}"
     state: present
-    tower_oauthtoken: "{{ my_token }}"
   loop: "{{ my_users }}"
   when: my_users | length > 0
 
-- name: Add GIt Project
+- name: Add Git Project
   awx.awx.tower_project:
     name: "{{ item.my_project }}"
     organization: "{{ my_organization }}"
     state: present
     scm_type: git
     scm_url: "{{ item.my_git }}"
-    tower_oauthtoken: "{{ my_token }}"
   loop: "{{ projects }}"
 
 - name: Add user to the member role of team
@@ -24,6 +22,5 @@
     target_team: "{{ item.my_team }}"
     role: member
     state: present
-    tower_oauthtoken: "{{ my_token }}"
   loop: "{{ my_users }}"
-  when: my_users | length > 0 and ( not ansible_check_mode )
+  when: my_users | length > 0

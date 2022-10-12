@@ -17,6 +17,8 @@ It's main workflow:
 - Install microk8s.
 - Add user to the required groups and perform a few additional configuration.
 
+Note: alternative solution would be to utilize https://galaxy.ansible.com/racqspace/microk8s.
+
 ## Deploy AWX
 
 The name of the related role: `deploy_awx`.
@@ -24,6 +26,8 @@ The name of the related role: `deploy_awx`.
 It's main workflow:
 - Deploy AWX operator.
 - Access AWX admin password and URL.
+
+Note: alternative solution would be to utilize https://galaxy.ansible.com/racqspace/awx.
 
 ## Configure AWX
 
